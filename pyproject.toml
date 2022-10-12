@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "subject-ia"
+version = "0.1.0"
+description = ""
+authors = ["Lucas Ferreira de Almeida"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+numpy = "^1.23.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
