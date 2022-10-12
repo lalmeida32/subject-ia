@@ -121,12 +121,6 @@ class KnightTour:
       print()
 
 
-# Running knight tour
-# tour = KnightTour(5, (0, 0))
-# print('The algorithm visited', tour.runDfs(), 'nodes.')
-# tour.print()
-
-
 class Node():
   """A node class for A* Pathfinding"""
 
@@ -432,4 +426,12 @@ checkmate = Checkmate(30, (0, 0), (25, 29), 'queen')
 # print('The algorithm visited', checkmate.runBfs(), 'nodes.')
 # checkmate.print()
 checkmate.runAstar()
+# checkmate.runBfs()
 print(commandsToString(checkmate.getCommands(), checkmate.boardSize))
+
+# Running knight tour
+# tour = KnightTour(5, (0, 0))
+# print('The algorithm visited', tour.runDfs(), 'nodes.')
+# tour.print()
+# tour.runDfs()
+# print(commandsToString(tour.getCommands(), tour.boardSize))

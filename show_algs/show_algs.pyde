@@ -25,6 +25,13 @@ def runNextCommand():
     if currentCommand >= len(commands)-1:
         finished = True
         return
+
+    print(currentCommand)
+    
+    if not lastPos is None:
+        fill(71, 71, 63)
+        square(skipConst * lastPos[0], skipConst * lastPos[1], skipConst)
+    lastPos = None
     
     cs = commands[currentCommand].split(';')
     for c in cs:
@@ -37,6 +44,7 @@ def runNextCommand():
         if val == 1:
             fill(235, 122, 30)
             square(skipConst * pos[0], skipConst * pos[1], skipConst)
+            lastPos = pos
         elif val == 0:
             fill(209, 168, 56)
             square(skipConst * pos[0], skipConst * pos[1], skipConst)
@@ -49,7 +57,7 @@ def runNextCommand():
         elif val == -3:
             fill(159, 240, 89)
             square(skipConst * pos[0], skipConst * pos[1], skipConst)
-            
+    
     currentCommand += 1
 
 def setup():
