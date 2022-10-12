@@ -280,7 +280,8 @@ class Checkmate:
 
 
 # Running checkmate
-checkmate = Checkmate(10, (0, 0), (4, 3), 'pawn')
+checkmate = Checkmate(20, (0, 0), (17, 16), 'queen')
 print('The algorithm visited', checkmate.runBfs(), 'nodes.')
 checkmate.print()
+checkmate.runBfs()
 print(commandsToString(checkmate.getCommands()))

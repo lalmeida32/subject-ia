@@ -2,7 +2,7 @@
 name = "subject-ia"
 version = "0.1.0"
 description = ""
-authors = ["Lucas Ferreira de Almeida"]
+authors = ["Lucas Ferreira de Almeida <lucasf.almeida.dev@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
