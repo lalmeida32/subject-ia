@@ -152,9 +152,8 @@ def heuristica(pos, goal):
 
   return dist / 3
 
+
 # Checkmate functions
-
-
 class Checkmate:
 
   def __init__(self, boardSize, initialPosition, enemyPosition, enemyType):
@@ -191,7 +190,8 @@ class Checkmate:
       return False
 
     if enemy == 'pawn':
-      checkMove((1, 0))
+      checkMove((1, 1))
+      checkMove((1, -1))
 
     elif enemy == 'king':
       moves = ((1, 0), (0, 1), (1, 1), (-1, 0),
@@ -422,16 +422,15 @@ class Checkmate:
 
 
 # Running checkmate
-checkmate = Checkmate(30, (0, 0), (25, 29), 'queen')
+# checkmate = Checkmate(30, (0, 0), (25, 28), 'pawn')
 # print('The algorithm visited', checkmate.runBfs(), 'nodes.')
 # checkmate.print()
-checkmate.runAstar()
 # checkmate.runBfs()
-print(commandsToString(checkmate.getCommands(), checkmate.boardSize))
+# print(commandsToString(checkmate.getCommands(), checkmate.boardSize))
 
 # Running knight tour
-# tour = KnightTour(5, (0, 0))
+tour = KnightTour(5, (0, 0))
 # print('The algorithm visited', tour.runDfs(), 'nodes.')
 # tour.print()
-# tour.runDfs()
-# print(commandsToString(tour.getCommands(), tour.boardSize))
+tour.runDfs()
+print(commandsToString(tour.getCommands(), tour.boardSize))

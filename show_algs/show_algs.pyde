@@ -1,8 +1,8 @@
 
 boardSize = 0
 canvaSize = 600
-updateEvery = 10
-fps = 60
+updateEvery = 1
+fps = 600
 commands = []
 currentCommand = 1
 lastPos = None
@@ -40,7 +40,7 @@ def runNextCommand():
         (pos, val) = c.split(' ')
         val = int(val)
         pos = pos.split(',')
-        pos = (int(pos[0]), int(pos[1]))
+        pos = (int(pos[1]), int(pos[0]))
         if val == 1:
             fill(235, 122, 30)
             square(skipConst * pos[0], skipConst * pos[1], skipConst)
