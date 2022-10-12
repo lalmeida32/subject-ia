@@ -3,9 +3,8 @@ import numpy as np
 import operator as op
 import queue
 
-
-knightMoves = ((2, 1), (1, 2), (-1, 2), (-2, 1),
-               (-2, -1), (-1, -2), (1, -2), (2, -1))
+knightMoves = ((2, -1), (1, -2), (-1, -2), (-2, -1),
+               (-2, 1), (-1, 2), (1, 2), (2, 1))
 
 
 # Knight Tour functions
@@ -69,6 +68,6 @@ class KnightTour:
 
 
 # Running knight tour
-tour = KnightTour(5, (0, 0))
+tour = KnightTour(7, (0, 0))
 print('The algorithm visited', tour.runDfs(), 'nodes.')
 tour.print()
