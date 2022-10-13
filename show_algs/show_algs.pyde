@@ -1,8 +1,8 @@
 
 boardSize = 0
 canvaSize = 600
-updateEvery = 1
-fps = 600
+updateEvery = 5
+fps = 60
 commands = []
 currentCommand = 1
 lastPos = None
@@ -21,12 +21,10 @@ def printBoard():
         line(skip, 0, skip, canvaSize)
 
 def runNextCommand():
-    global commands, boardSize, canvaSize, currentCommand, lastPos
+    global commands, boardSize, canvaSize, currentCommand, lastPos, updateEvery
     if currentCommand >= len(commands)-1:
         finished = True
         return
-
-    print(currentCommand)
     
     if not lastPos is None:
         fill(71, 71, 63)
@@ -36,6 +34,9 @@ def runNextCommand():
     cs = commands[currentCommand].split(';')
     for c in cs:
         if c == '':
+            continue
+        if c == 'slow':
+            updateEvery = fps
             continue
         (pos, val) = c.split(' ')
         val = int(val)

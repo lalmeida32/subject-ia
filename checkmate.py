@@ -1,16 +1,8 @@
-# Libraries and utility
-from tabnanny import check
+from lib import knightMoves, isValidMove, commandsToString
 import numpy as np
 import operator as op
 import queue
 import heapq
-
-knightMoves = ((2, 1), (1, 2), (-1, 2), (-2, 1),
-               (-2, -1), (-1, -2), (1, -2), (2, -1))
-
-
-def isValidMove(newPos, size):
-  return newPos[0] >= 0 and newPos[1] >= 0 and newPos[0] < size and newPos[1] < size
 
 
 def canMove(pos, enemy, enemyPos, sizeOfBoard):
@@ -30,95 +22,6 @@ def canMove(pos, enemy, enemyPos, sizeOfBoard):
     return False
 
   return True
-
-
-def commandsToString(commands, boardSize):
-  if commands is None:
-    return ''
-  result = f'{boardSize}\n'
-  for commandLine in commands:
-    line = ''
-    for command in commandLine:
-      pos = command[0]
-      val = command[1]
-      line += f'{pos} {val};'.replace('(', '').replace(')',
-                                                       '').replace(', ', ',')
-    result += line + '\n'
-  return result
-
-
-# Knight Tour functions
-class KnightTour:
-
-  def __init__(self, boardSize, initialPosition):
-    self.boardSize = boardSize
-    self.initialPosition = initialPosition
-    self.board = None
-    self.commands = None
-
-  def runDfs(self):
-    size = self.boardSize
-    pos = self.initialPosition
-
-    board = np.zeros(shape=(size, size)).astype(int)
-    numVisits = 0
-    numBlocked = 0
-
-    # The reversed list is faster for board size 7
-    moves = [*knightMoves]
-    moves.reverse()
-
-    commands = []
-
-    def dfsImpl(current):
-      nonlocal numVisits, board, size, numBlocked, moves, commands
-
-      numVisits += 1
-      numBlocked += 1
-      board[current] = numBlocked
-      commands.append([(current, 1)])
-
-      if (numBlocked == size ** 2):
-        return True
-
-      next = []
-      for move in moves:
-        newPos = tuple(map(op.add, current, move))
-        if isValidMove(newPos, size) and board[newPos] == 0:
-          next.append(newPos)
-
-      for newPos in next:
-        foundPath = dfsImpl(newPos)
-        if foundPath:
-          return True
-
-      board[current] = 0
-      numBlocked -= 1
-      commands.append([(current, 0)])
-      return False
-
-    self.commands = commands
-    if dfsImpl(pos):
-      self.board = board
-    return numVisits
-
-  def runHeuristic(self):
-    # TODO
-    return 0
-
-  def getCommands(self):
-    return self.commands
-
-  def print(self):
-    if self.board is None:
-      print('No path found.')
-      return
-
-    board = self.board
-    for row in board:
-      for element in row:
-        print(f'{element:^3}', end=' ')
-      print()
 
 
 class Node():
@@ -422,15 +325,12 @@ class Checkmate:
 
 
 # Running checkmate
-# checkmate = Checkmate(30, (0, 0), (25, 28), 'pawn')
-# print('The algorithm visited', checkmate.runBfs(), 'nodes.')
-# checkmate.print()
-# checkmate.runBfs()
-# print(commandsToString(checkmate.getCommands(), checkmate.boardSize))
+checkmate = Checkmate(30, (0, 0), (25, 28), 'queen')
 
-# Running knight tour
-tour = KnightTour(5, (0, 0))
-# print('The algorithm visited', tour.runDfs(), 'nodes.')
-# tour.print()
-tour.runDfs()
-print(commandsToString(tour.getCommands(), tour.boardSize))
+# print('The algorithm visited', checkmate.runBfs(), 'nodes.')
+# print('The algorithm visited', checkmate.runAstar(), 'nodes.')
+# checkmate.print()
+
+# checkmate.runBfs()
+checkmate.runAstar()
+print(commandsToString(checkmate.getCommands(), checkmate.boardSize))
