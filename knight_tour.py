@@ -70,7 +70,7 @@ class KnightTour:
     self.commands = commands
     return numVisits
 
-    def runHeuristic(self):
+  def runHeuristic(self):
     pos=self.initialPosition
     sizeOfBoard=self.boardSize
     numVisits=1
@@ -78,12 +78,12 @@ class KnightTour:
     board = np.zeros(shape=(sizeOfBoard, sizeOfBoard)).astype(int)
     board[pos]=numVisits
     commands = []
-    commands.append([pos, 0])
+    commands.append([(pos, 1)])
     for i in range(sizeOfBoard*sizeOfBoard-1):
       numVisits+=1
       pos=heuristicaNextMoveTour(pos, sizeOfBoard, board)
       board[pos]=numVisits
-      commands.append([pos, 0])
+      commands.append([(pos, 1)])
     self.commands = commands
     self.board = board
     return numVisits
