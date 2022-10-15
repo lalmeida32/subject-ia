@@ -331,6 +331,6 @@ checkmate = Checkmate(30, (0, 0), (25, 28), 'queen')
 # print('The algorithm visited', checkmate.runAstar(), 'nodes.')
 # checkmate.print()
 
-# checkmate.runBfs()
-checkmate.runAstar()
+checkmate.runBfs()
+# checkmate.runAstar()
 print(commandsToString(checkmate.getCommands(), checkmate.boardSize))

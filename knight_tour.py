@@ -1,5 +1,5 @@
 
-from lib import knightMoves, isValidMove, commandsToString
+from lib import knightMoves, isValidMove, commandsToString, heuristicaNextMoveTour
 import numpy as np
 import operator as op
 
@@ -71,18 +71,18 @@ class KnightTour:
     return numVisits
 
   def runHeuristic(self):
-    pos=self.initialPosition
-    sizeOfBoard=self.boardSize
-    numVisits=1
+    pos = self.initialPosition
+    sizeOfBoard = self.boardSize
+    numVisits = 1
 
     board = np.zeros(shape=(sizeOfBoard, sizeOfBoard)).astype(int)
-    board[pos]=numVisits
+    board[pos] = numVisits
     commands = []
     commands.append([(pos, 1)])
-    for i in range(sizeOfBoard*sizeOfBoard-1):
-      numVisits+=1
-      pos=heuristicaNextMoveTour(pos, sizeOfBoard, board)
-      board[pos]=numVisits
+    for i in range(sizeOfBoard * sizeOfBoard - 1):
+      numVisits += 1
+      pos = heuristicaNextMoveTour(pos, sizeOfBoard, board)
+      board[pos] = numVisits
       commands.append([(pos, 1)])
     self.commands = commands
     self.board = board
@@ -110,5 +110,5 @@ tour = KnightTour(7, (0, 0))
 tour.runDfs()
 print(commandsToString(tour.getCommands(), tour.boardSize))
 
-tour.runHeuristic()
-print(commandsToString(tour.getCommands(), tour.boardSize))
+# tour.runHeuristic()
+# print(commandsToString(tour.getCommands(), tour.boardSize))
