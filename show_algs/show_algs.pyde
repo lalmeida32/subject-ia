@@ -1,8 +1,8 @@
 
 boardSize = 0
 canvaSize = 600
-updateEvery = 10
-fps = 600
+updateEvery = 60
+fps = 60
 commands = []
 currentCommand = 1
 lastPos = None

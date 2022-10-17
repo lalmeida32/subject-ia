@@ -105,10 +105,10 @@ class KnightTour:
 
 # Running knight tour
 tour = KnightTour(7, (0, 0))
-# print('The algorithm visited', tour.runDfs(), 'nodes.')
-# tour.print()
-tour.runDfs()
-print(commandsToString(tour.getCommands(), tour.boardSize))
+print('The algorithm visited', tour.runHeuristic(), 'nodes.')
+tour.print()
+# tour.runDfs()
+# print(commandsToString(tour.getCommands(), tour.boardSize))
 
 # tour.runHeuristic()
 # print(commandsToString(tour.getCommands(), tour.boardSize))
